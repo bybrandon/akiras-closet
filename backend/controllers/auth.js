@@ -13,6 +13,7 @@ async function logIn(req, res) {
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
+    console.log(user);
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
