@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import * as postService from '../../services/postService';
+import * as heroService from '../../services/heroService';
 
-export default function PostListPage() {
+export default function TeamListPage() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -14,14 +14,14 @@ export default function PostListPage() {
 
   return (
     <>
-      <h1>Post List</h1>
+      {/* <h1>Post List</h1>
       {posts.length ? 
         <ul>
           {posts.map((post) => <li key={post._id}>{post.content}</li>)}
         </ul>
         :
         <p>No Posts Yet!</p>
-      }
+      } */}
     </>
   );
 }

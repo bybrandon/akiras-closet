@@ -6,7 +6,7 @@
 
     await mongoose.connect(process.env.MONGODB_URI);
 
-    const Hero = require('./models/hero');
+    const Hero = require('./backend/models/hero');
 
 
     const heroData = [

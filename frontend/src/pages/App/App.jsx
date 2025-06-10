@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router';
 import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
-import PostListPage from '../PostListPage/PostListPage';
-import NewPostPage from '../NewPostPage/NewPostPage';
+import TeamListPage from '../TeamListPage/TeamListPage';
+import NewTeamPage from '../NewTeamPage/NewTeamPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -19,8 +19,8 @@ export default function App() {
         {user ? (
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/posts" element={<PostListPage />} />
-            <Route path="/posts/new" element={<NewPostPage />} />
+            <Route path="/heroes" element={<TeamListPage />} />
+            <Route path="/heroes/new" element={<NewTeamPage />} />
             <Route path="*" element={null}/>
           </Routes>
         ) : (

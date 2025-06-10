@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import * as postService from '../../services/postService';
+import * as heroService from '../../services/heroService';
 
-export default function NewPostPage() {
+export default function NewTeamPage() {
   const [content, setContent] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   
@@ -12,16 +12,16 @@ export default function NewPostPage() {
     evt.preventDefault();
     try {
       // sendRequest is expecting an object as the payload
-      await postService.create({ content });
-      navigate('/posts');
+      await heroService.create({ content });
+      navigate('/heroes');
     } catch (err) {
-      setErrorMsg('Adding Post Failed');
+      setErrorMsg('Assembling Team Failed');
     }
   }
 
   return (
     <>
-      <h2>Add Post</h2>
+      <h2>Assemble Team</h2>
       <form onSubmit={handleSubmit}>
         <label>Post Content</label>
         <input
@@ -30,7 +30,7 @@ export default function NewPostPage() {
           onChange={(evt) => setContent(evt.target.value)}
           required
         />
-        <button type="submit">ADD POST</button>
+        <button type="submit">ASSEMBLE TEAM</button>
       </form>
       <p className="error-message">&nbsp;{errorMsg}</p>
     </>
