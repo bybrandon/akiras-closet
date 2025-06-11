@@ -3,15 +3,29 @@ import { useNavigate } from 'react-router';
 import * as heroService from '../../services/heroService';
 
 export default function NewTeamPage() {
+  const [heroes, setHeroes] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     ability: '',
-    cost: ''
+    cost: '',
+    heroes: []
   });
 
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchHeroes() {
+      try {
+        const heroList = await heroService.getAll(); // adjust to your API method
+        setHeroes(heroList);
+      } catch (err) {
+        console.error('Failed to load heroes', err);
+      }
+    }
+    fetchHeroes();
+  }, []);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
