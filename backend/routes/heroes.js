@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
-// All paths start with '/api/posts'
+// All paths start with '/api/heroes'
 
 // Protect all defined routes
 router.use(ensureLoggedIn);

@@ -2,37 +2,92 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as heroService from '../../services/heroService';
 
-export default function NewTeamPage() {
-  const [content, setContent] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  export default function NewTeamPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    ability: '',
+    cost: ''
+  });
   
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
+
+ function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: name === 'cost' ? Number(value) : value
+    }));
+  }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      // sendRequest is expecting an object as the payload
-      await heroService.create({ content });
-      navigate('/heroes');
+      await heroService.create(formData);
+      navigate('/heroes'); // Redirect after success
     } catch (err) {
+      console.error(err);
       setErrorMsg('Assembling Team Failed');
     }
   }
 
   return (
-    <>
-      <h2>Assemble Team</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Post Content</label>
-        <input
-          type="text"
-          value={content}
-          onChange={(evt) => setContent(evt.target.value)}
-          required
-        />
-        <button type="submit">ASSEMBLE TEAM</button>
+    <div className="max-w-xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold mb-4">Assemble Your Squad</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="title">Squad Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-2 bg-gray-800 rounded border border-gray-600"
+          />
+        </div>
+        
+        <button
+          type="submit"
+          className="assemble-button"
+        >
+          ASSEMBLE TEAM
+        </button>
       </form>
-      <p className="error-message">&nbsp;{errorMsg}</p>
-    </>
+      {errorMsg && (
+        <p className="err-message">{errorMsg}</p>
+      )}
+    </div>
   );
 }
+
+
+//   async function handleSubmit(evt) {
+//     evt.preventDefault();
+//     try {
+//       // sendRequest is expecting an object as the payload
+//       await heroService.create({ content });
+//       navigate('/heroes');
+//     } catch (err) {
+//       setErrorMsg('Assembling Team Failed');
+//     }
+//   }
+
+//   return (
+//     <>
+//       <h2>Assemble Team</h2>
+//       <form onSubmit={handleSubmit}>
+//         <label>Post Content</label>
+//         <input
+//           type="text"
+//           value={content}
+//           onChange={(evt) => setContent(evt.target.value)}
+//           required
+//         />
+//         <button type="submit">ASSEMBLE TEAM</button>
+//       </form>
+//       <p className="error-message">&nbsp;{errorMsg}</p>
+//     </>
+//   );
+// }
