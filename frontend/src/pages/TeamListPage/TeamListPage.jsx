@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import * as heroService from '../../services/heroService';
 
 export default function TeamListPage() {
-  const [posts, setPosts] = useState([]);
+  const [heroes, setHeroes] = useState([]);
 
   useEffect(() => {
-    async function fetchPosts() {
-      const posts = await postService.index();
-      setPosts(posts);
+    async function fetchHeroes() {
+      const heroes = await heroService.index();
+      setHeroes(heroes);
     }
-    fetchPosts();
+    fetchHeroes();
   }, []);
 
   return (

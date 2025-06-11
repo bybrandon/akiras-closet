@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as heroService from '../../services/heroService';
 
-  export default function NewTeamPage() {
+export default function NewTeamPage() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     ability: '',
     cost: ''
   });
-  
+
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
- function handleChange(evt) {
+  function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -33,9 +33,9 @@ import * as heroService from '../../services/heroService';
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold mb-4">Assemble Your Squad</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="isaac">
+      <h2 className="header-1">Assemble Your Squad</h2>
+      <form onSubmit={handleSubmit} className="submit-1">
         <div>
           <label className="title">Squad Name</label>
           <input
@@ -44,10 +44,17 @@ import * as heroService from '../../services/heroService';
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-2 bg-gray-800 rounded border border-gray-600"
+            className="required"
           />
         </div>
-        
+        <label htmlFor="heroes">Add Your Heroes:</label>
+        <select id="heroes" name="heroes" multiple>
+          {heroes.map(hero => (
+            <option key={hero._id} value={hero._id}>
+              {hero.description}
+            </option>
+          ))}
+        </select>
         <button
           type="submit"
           className="assemble-button"

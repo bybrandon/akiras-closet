@@ -10,8 +10,10 @@ import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
 
 export default function App() {
+
   const [user, setUser] = useState(getUser());
 
+  
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} />
@@ -21,14 +23,14 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/heroes" element={<TeamListPage />} />
             <Route path="/heroes/new" element={<NewTeamPage />} />
-            <Route path="*" element={null}/>
+            <Route path="*" element={null} />
           </Routes>
         ) : (
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
-            <Route path="*" element={null}/>
+            <Route path="*" element={null} />
           </Routes>
         )}
       </section>
