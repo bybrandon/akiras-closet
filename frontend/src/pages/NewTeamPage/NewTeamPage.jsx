@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as heroService from '../../services/heroService';
 
 export default function NewTeamPage() {
-  const [heroes, setHeroes] = useState([]);
+ 
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -11,7 +11,8 @@ export default function NewTeamPage() {
     cost: '',
     heroes: []
   });
-
+  
+  const [heroes, setHeroes] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
@@ -32,6 +33,15 @@ export default function NewTeamPage() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: name === 'cost' ? Number(value) : value
+    }));
+  }
+
+  function handleHeroSelect(evt) {
+    const selectedOptions = Array.from(evt.target.selectedOptions);
+    const selectedHeroIds = selectedOptions.map(option => option.value);
+    setFormData(prevData => ({
+      ...prevData,
+      heroes: selectedHeroIds
     }));
   }
 
