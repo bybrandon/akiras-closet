@@ -32,11 +32,11 @@ router.get('/:teamId', async (req, res) => {
   }
 });
 
-// POST /api/pets (CREATE action)
+// POST /api/teams (CREATE action)
 router.post('/', async (req, res) => {
   try {
-    const createdPet = await Pet.create(req.body);
-    res.status(201).json(createdPet);
+    const createdTeam = await Team.create(req.body);
+    res.status(201).json(createdTeam);
   } catch (err) {
     // Most likely a validation error has occurred.
     // 400 is a Bad Request
