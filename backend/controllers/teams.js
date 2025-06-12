@@ -1,4 +1,4 @@
-const Pet = require('../models/team');
+const Team = require('../models/team');
 
 const express = require('express');
 const router = express.Router();
@@ -8,8 +8,8 @@ const router = express.Router();
 // GET /api/teams (INDEX action)
 router.get('/', async (req, res) => {
   try {
-    const pets = await Pet.find({});
-    res.status(200).json(pets);
+    const teams = await Team.find({});
+    res.status(200).json(teams);
   } catch (err) {
     // It's very unlikely to have an error occur 
     // in the INDEX action
@@ -17,13 +17,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/pets/:petId (SHOW action)
-router.get('/:petId', async (req, res) => {
+// GET /api/teams/:teamId (SHOW action)
+router.get('/:teamId', async (req, res) => {
   try {
-    const pet = await Pet.findById(req.params.petId);
-    if (!pet) {
+    const team = await Team.findById(req.params.teamId);
+    if (!team) {
       res.status(404);
-      throw new Error('Pet Not Found');
+      throw new Error('Team Not Availible');
     }
     res.status(200).json(pet);
   } catch (err) {
