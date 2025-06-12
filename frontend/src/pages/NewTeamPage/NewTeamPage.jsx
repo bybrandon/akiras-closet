@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as heroService from '../../services/heroService';
 
-export default function NewTeamPage() {
+export default function NewTeamPage({heroes}) {
  
   const [formData, setFormData] = useState({
     name: '',
@@ -13,21 +13,8 @@ export default function NewTeamPage() {
   });
   // state object that holds values for a form where a user can input information about their team
 
-  const [heroes, setHeroes] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchHeroes() {
-      try {
-        const heroList = await heroService.getAll(); // adjust to your API method
-        setHeroes(heroList);
-      } catch (err) {
-        console.error('Failed to load heroes', err);
-      }
-    }
-    fetchHeroes();
-  }, []);
 
   function handleChange(evt) {
     const { name, value } = evt.target;

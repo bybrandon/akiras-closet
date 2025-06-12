@@ -28,8 +28,9 @@ export default async function sendRequest(
   }
   const res = await fetch(url, options);
   // if res.ok is false then something went wrong
+  console.log(res);
   if (res.ok) return res.json();
-  // Obtain error sent from server
+    // Obtain error sent from server
   const err = await res.json();
   // Throw error to be handled in React
   throw new Error(err.message);

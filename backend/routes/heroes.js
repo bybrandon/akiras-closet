@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
+const heroesController = require('../controllers/heroes');
 
 // All paths start with '/api/heroes'
 
@@ -8,14 +9,7 @@ const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 router.use(ensureLoggedIn);
 
 // GET /api/heroes (INDEX action)
-router.get('/', async (req, res) => {
-  try {
-    const heroes = await Hero.find();
-    res.json(heroes);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch heroes' });
-  }
-});
+router.get('/', heroesController.index); 
 
 
 // router.get('/', postsCtrl.index);

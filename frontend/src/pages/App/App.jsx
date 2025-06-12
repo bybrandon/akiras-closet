@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router';
 import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
@@ -7,12 +7,24 @@ import NewTeamPage from '../NewTeamPage/NewTeamPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
+import * as heroService from '../../services/heroService';
 import './App.css';
 
 export default function App() {
 
   const [user, setUser] = useState(getUser());
-
+  const [heroes, setHeroes] = useState([]);
+  useEffect(() => {
+      async function fetchHeroes() {
+        try {
+          const heroList = await heroService.index(); 
+          setHeroes(heroList);
+        } catch (err) {
+          console.error('Failed to load heroes', err);
+        }
+      }
+      fetchHeroes();
+    }, []);
   
   return (
     <main className="App">
@@ -22,7 +34,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/heroes" element={<TeamListPage />} />
-            <Route path="/heroes/new" element={<NewTeamPage />} />
+            <Route path="/heroes/new" element={<NewTeamPage heroes = {heroes}/> } />
             <Route path="*" element={null} />
           </Routes>
         ) : (
