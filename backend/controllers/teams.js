@@ -60,22 +60,19 @@ router.delete('/:teamId', async (req, res) => {
   }
 });
 
-// PUT /api/pets/:petId (UPDATE action)
-router.put('/:petId', async (req, res) => {
+// PUT /api/teams/:teamId (UPDATE action)
+router.put('/:teamId', async (req, res) => {
   try {
-    const updatedPet = await Pet.findByIdAndUpdate(
-      req.params.petId,
-      // Update object
+    const updatedTeam = await Team.findByIdAndUpdate(
+      req.params.teamId,
       req.body,
-      // Options object
-      // Need to specify new: true if you want the updated doc to be returned
       { new: true }
     );
-    if (!updatedPet) {
+    if (!updatedTeam) {
       res.status(404);
-      throw new Error('Pet Not Found');
+      throw new Error('Squad Not Found');
     }
-    res.json(updatedPet);
+    res.json(updatedTeam);
   } catch (err) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
