@@ -23,7 +23,7 @@ router.get('/:teamId', async (req, res) => {
     const team = await Team.findById(req.params.teamId);
     if (!team) {
       res.status(404);
-      throw new Error('Team Not Availible');
+      throw new Error('Squad Not Availible');
     }
     res.status(200).json(pet);
   } catch (err) {
@@ -38,22 +38,20 @@ router.post('/', async (req, res) => {
     const createdTeam = await Team.create(req.body);
     res.status(201).json(createdTeam);
   } catch (err) {
-    // Most likely a validation error has occurred.
-    // 400 is a Bad Request
     res.status(400).json({ err: err.message });
   }
 });
 
-// DELETE /api/pets/:petId (DELETE action)
-router.delete('/:petId', async (req, res) => {
+// DELETE /api/teams/:teamId (DELETE action)
+router.delete('/:teamId', async (req, res) => {
   try {
-    const deletedPet = await Pet.findByIdAndDelete(req.params.petId);
+    const deletedTeam = await Team.findByIdAndDelete(req.params.teamId);
     // The below implements authorization and ensures that the user that created the pet
     // is the one trying to delete it.
     // const deletedPet = await Pet.findOneAndDelete({user: req.user._id, _id: req.params.petId});
-    if (!deletedPet) {
+    if (!deletedTeam) {
       res.status(404);
-      throw new Error('Pet Not Found');
+      throw new Error('Squad Not Found');
     }
     res.status(200).json(deletedPet);
   } catch (err) {
