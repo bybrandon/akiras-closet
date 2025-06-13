@@ -8,6 +8,7 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as heroService from '../../services/heroService';
+import * as teamService from '../../services/teamService';
 import './App.css';
 
 export default function App() {
@@ -33,8 +34,8 @@ export default function App() {
         {user ? (
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/heroes" element={<TeamListPage />} />
-            <Route path="/heroes/new" element={<NewTeamPage heroes = {heroes}/> } />
+            <Route path="/teams" element={<TeamListPage />} />
+            <Route path="/teams/new" element={<NewTeamPage heroes = {heroes}/> } />
             <Route path="*" element={null} />
           </Routes>
         ) : (

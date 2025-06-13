@@ -13,15 +13,15 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className="NavBar">
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/">HQ</NavLink>
       &nbsp; | &nbsp;
       {user ? (
         <>
-          <NavLink to="/heroes" end>
+          <NavLink to="/teams" end>
             Team List
           </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/heroes/new">New Team</NavLink>
+          <NavLink to="/teams/new">New Team</NavLink>
           &nbsp; | &nbsp;
           <Link to="/" onClick={handleLogOut}>Log Out</Link>
           <span>Welcome, {user.name}</span>

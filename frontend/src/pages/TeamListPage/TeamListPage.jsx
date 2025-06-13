@@ -1,27 +1,28 @@
 import { useState, useEffect } from 'react';
 import * as heroService from '../../services/heroService';
+import * as teamService from '../../services/teamService';
 
 export default function TeamListPage() {
-  const [heroes, setHeroes] = useState([]);
+  const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    async function fetchHeroes() {
-      const heroes = await heroService.index();
-      setHeroes(heroes);
+    async function fetchTeams() {
+      const teams = await teamService.index();
+      setTeams(teams);
     }
-    fetchHeroes();
+    fetchTeams();
   }, []);
 
   return (
     <>
-      {/* <h1>Post List</h1>
-      {posts.length ? 
+      <h1>Squad List</h1>
+      {teams.length ? 
         <ul>
-          {posts.map((post) => <li key={post._id}>{post.content}</li>)}
+          {teams.map((team) => <li key={team._id}>{team.name}</li>)}
         </ul>
         :
-        <p>No Posts Yet!</p>
-      } */}
+        <p>No Squads Yet!</p>
+      }
     </>
   );
 }

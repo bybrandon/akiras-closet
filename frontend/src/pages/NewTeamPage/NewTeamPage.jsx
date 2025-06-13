@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import * as heroService from '../../services/heroService';
+import * as teamService from '../../services/teamService';
 
 export default function NewTeamPage({heroes}) {
  
@@ -36,7 +36,7 @@ export default function NewTeamPage({heroes}) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      await heroService.create(formData);
+      await teamService.create(formData);
       navigate('/heroes'); // Redirect after success
     } catch (err) {
       console.error(err);
