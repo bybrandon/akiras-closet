@@ -5,6 +5,7 @@ import * as teamService from '../../services/teamService';
 export default function NewTeamPage({heroes}) {
  
   const [formData, setFormData] = useState({
+    user: '',
     name: '',
     heroes: []
   });

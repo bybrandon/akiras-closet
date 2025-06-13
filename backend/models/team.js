@@ -16,10 +16,10 @@ const teamSchema = new Schema(
     name: {
       type: String,
     },
-    user: {
+    author: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+      required: true,
+      ref: 'User'
     },
     heroes: [
       {

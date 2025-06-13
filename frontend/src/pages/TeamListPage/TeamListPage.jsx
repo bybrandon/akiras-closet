@@ -15,13 +15,16 @@ import * as teamService from '../../services/teamService';
   return (
     <>
       <h1>Squad List</h1>
-      {/* {teams.length ? 
+      {teams.length ? 
         <ul>
-          {teams.map((team) => <li key={team._id}>{team.name}</li>)}
+          {teams.map((team) => <li key={team._id}>
+            {team.name}
+            {team.heroes}
+          </li>)}
         </ul>
         :
         <p>No Squads Yet!</p>
-      } */}
+      }
     </>
   );
  }

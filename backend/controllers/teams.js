@@ -41,6 +41,7 @@ async function show(req, res) {
 // POST /api/teams (CREATE action)
 async function create(req, res) {
   try {
+    req.body.author = req.user._id;
     const createdTeam = await Team.create(req.body);
     res.status(201).json(createdTeam);
   } catch (err) {
