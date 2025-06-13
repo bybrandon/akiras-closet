@@ -6,9 +6,6 @@ export default function NewTeamPage({heroes}) {
  
   const [formData, setFormData] = useState({
     name: '',
-    description: '',
-    ability: '',
-    cost: '',
     heroes: []
   });
   // state object that holds values for a form where a user can input information about their team
@@ -37,7 +34,7 @@ export default function NewTeamPage({heroes}) {
     evt.preventDefault();
     try {
       await teamService.create(formData);
-      navigate('/heroes'); // Redirect after success
+      navigate('/teams'); // Redirect after success
     } catch (err) {
       console.error(err);
       setErrorMsg('Assembling Team Failed');

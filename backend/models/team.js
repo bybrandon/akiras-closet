@@ -16,6 +16,11 @@ const teamSchema = new Schema(
     name: {
       type: String,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
     heroes: [
       {
         type: Schema.Types.ObjectId,
