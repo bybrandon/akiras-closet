@@ -60,7 +60,7 @@ export default function NewTeamPage({heroes}) {
         <select id="heroes" name="heroes" multiple>
           {heroes.map(hero => (
             <option key={hero._id} value={hero._id}>
-              {hero.description}
+              {hero.name} {hero.cost}
             </option>
           ))}
         </select>
