@@ -10,14 +10,20 @@ export default function TeamDetailPage({ user }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        async function fetchTeamAndHeroes() {
+        async function fetchTeams() {
             const team = await teamService.show(teamId);
-            const heroes = await heroService.getAvailableForTeam(teamId);
             setTeam(team);
+        }
+        fetchTeams();
+    }, []);
+    
+    useEffect(() => {
+        async function fetchHeroes() {
+            const heroes = await heroService.getAvailableForTeam(teamId);
             setAvailableHeroes(heroes);
         }
-        fetchTeamAndHeroes();
-    }, []);
+        fetchHeroes();
+    }, [team]);
 
     if (!team) return null;
     
