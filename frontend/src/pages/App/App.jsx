@@ -9,13 +9,12 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as heroService from '../../services/heroService';
-import * as teamService from '../../services/teamService';
 import './App.css';
 
 export default function App() {
-
   const [user, setUser] = useState(getUser());
   const [heroes, setHeroes] = useState([]);
+  
   useEffect(() => {
       async function fetchHeroes() {
         try {
@@ -36,8 +35,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/teams" element={<TeamListPage />} />
-            <Route path="/teams/:teamId" element={<TeamDetailPage />} />
-            <Route path="/teams/new" element={<NewTeamPage heroes = {heroes}/> } />
+            <Route path="/teams/:teamId" element={<TeamDetailPage user={user}/>} />
+            <Route path="/teams/new" element={<NewTeamPage heroes={heroes}/> } />
             <Route path="*" element={null} />
           </Routes>
         ) : (

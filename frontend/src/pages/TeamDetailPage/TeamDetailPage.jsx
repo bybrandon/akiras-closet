@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import * as teamService from '../../services/teamService';
 
-export default function TeamDetailPage() {
+export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
     const { teamId } = useParams();
 
@@ -16,20 +16,25 @@ export default function TeamDetailPage() {
 
     if (!team) return null;
 
+    function handleRemoveHero(heroId) {
+
+    }
+
     return (
         <>
             <h1>{team.name}</h1>
             <section className="team-hereos">
-                {team.heroes.length ? 
-                <ul>
-                    {team.heroes.map((hero) => (
-                        <li key={hero}>
-                            {hero.name}
-                        </li>
-                    ))}
-                </ul> 
-                :
-                <p>No Heroes Assigned</p> 
+                {team.heroes.length ?
+                    <ul>
+                        {team.heroes.map((hero) => (
+                            <li key={hero}>
+                                {hero.name}
+                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>🗑️</button>}
+                            </li>
+                        ))}
+                    </ul>
+                    :
+                    <p>No Heroes Assigned</p>
                 }
             </section>
         </>
