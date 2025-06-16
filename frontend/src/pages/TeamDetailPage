@@ -1,0 +1,14 @@
+// import { useEffect, useState } from 'react';
+// import { useNavigate, useParams } from 'react-router';
+// import * as teamService from '../services/teamService';
+
+// export default function TeamDetailPage() {
+//     const TeamDetailPage = (props) => {
+//         const { teamDetailPage, name, heroes} = props;
+//         return (
+//         <div classname="detail"> </div>
+//         )
+//     }
+ 
+
+// }

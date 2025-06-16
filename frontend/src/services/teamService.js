@@ -23,8 +23,8 @@ async function index() {
 //   }
 // };
 
-async function show(formData, teamId) {
-  sendRequest(BASE_URL, 'GET', formData, teamId)
+async function show(teamId) {
+  sendRequest(BASE_URL, 'GET', teamId)
 }
 
 // team

@@ -14,14 +14,16 @@ import * as teamService from '../../services/teamService';
 
   return (
     <>
-      <h1>Squad List</h1>
+      <h1><strong>Squad List</strong></h1>                                                                                                               
       {teams.length ? 
+      <div className='squads'>
         <ul>
           {teams.map((team) => <li key={team._id}>
             {team.name}
-            {team.heroes}
+            {team.hero}
           </li>)}
         </ul>
+        </div>
         :
         <p>No Squads Yet!</p>
       }

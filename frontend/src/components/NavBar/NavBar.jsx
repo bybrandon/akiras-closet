@@ -18,7 +18,7 @@ export default function NavBar({ user, setUser }) {
       {user ? (
         <>
           <NavLink to="/teams" end>
-            Team List
+            Teams
           </NavLink>
           &nbsp; | &nbsp;
           <NavLink to="/teams/new">New Team</NavLink>
