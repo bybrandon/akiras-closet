@@ -17,7 +17,6 @@ export async function update(formData) {
   return sendRequest(BASE_URL, 'PUT', formData);
 }
 
-export async function deleteTeam() {
-
+export async function removeHero(heroId) {
+  return sendRequest(`${BASE_URL}/heroes/${heroId}`, 'DELETE');
 }
-

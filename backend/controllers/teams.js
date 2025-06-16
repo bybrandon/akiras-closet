@@ -9,7 +9,7 @@ module.exports = {
   index,
   show,
   create,
-  deleteTeam,
+  removeHero,
   update
 };
 
@@ -49,15 +49,18 @@ async function create(req, res) {
   }
 };
 
-// DELETE /api/teams/:teamId (DELETE action)
- async function deleteTeam(req, res) {
+// DELETE /api/teams/heroes/:heroId (remove hero from team)
+ async function removeHero(req, res) {
   try {
-    const deletedTeam = await Team.findByIdAndDelete(req.params.teamId);
-    if (!deletedTeam) {
+    const team = await Team.findOne({heroes: req.params.heroId});
+    if (!team) {
       res.status(404);
       throw new Error('Squad Not Found');
     }
-    res.status(200).json(deletedTeam);
+    team.heroes = team.heroes.filter((h) => !h.equals(req.params.heroId));
+    await team.save();
+    await team.populate('heroes');
+    res.status(200).json(team);
   } catch (err) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });

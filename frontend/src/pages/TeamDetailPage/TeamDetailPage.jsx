@@ -16,8 +16,9 @@ export default function TeamDetailPage({ user }) {
 
     if (!team) return null;
 
-    function handleRemoveHero(heroId) {
-
+    async function handleRemoveHero(heroId) {
+        const updatedTeam = await teamService.removeHero(heroId);
+        setTeam(updatedTeam);
     }
 
     return (
@@ -27,7 +28,7 @@ export default function TeamDetailPage({ user }) {
                 {team.heroes.length ?
                     <ul>
                         {team.heroes.map((hero) => (
-                            <li key={hero}>
+                            <li key={hero._id}>
                                 {hero.name}
                                 { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>🗑️</button>}
                             </li>
