@@ -4,6 +4,7 @@ import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
 import TeamListPage from '../TeamListPage/TeamListPage';
 import NewTeamPage from '../NewTeamPage/NewTeamPage';
+import TeamDetailPage from '../TeamDetailPage/TeamDetailPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -35,6 +36,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/teams" element={<TeamListPage />} />
+            <Route path="/teams/:teamId" element={<TeamDetailPage />} />
             <Route path="/teams/new" element={<NewTeamPage heroes = {heroes}/> } />
             <Route path="*" element={null} />
           </Routes>

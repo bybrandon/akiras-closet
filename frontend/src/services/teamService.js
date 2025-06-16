@@ -1,67 +1,23 @@
 import sendRequest from "./sendRequest";
 const BASE_URL = '/api/teams';
 
-// const index = async () => {
-//   try {
-//     const res = await fetch(BASE_URL);
-//     return res.json();
-//   } catch (err) {
-//     console.log(err)
-//   }
-// };
-
-async function index() {
+export async function index() {
   return sendRequest(BASE_URL);
 }
 
-// const show = async (teamId) => {
-//   try {
-//     const res = await fetch(`${BASE_URL}/${teamId}`);
-//     return res.json();
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-async function show(teamId) {
-  sendRequest(BASE_URL, 'GET', teamId)
+export async function show(teamId) {
+  return sendRequest(`${BASE_URL}/${teamId}`);
 }
 
-// team
-async function create(formData) {
-  sendRequest(BASE_URL, 'POST', formData);
+export async function create(formData) {
+  return sendRequest(BASE_URL, 'POST', formData);
 }
 
-// const update = async (formData, teamId) => {
-//   try {
-//     const res = await fetch(`${BASE_URL}/${teamId}`, {
-//       method: 'PUT',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(formData)
-//     });
-//     return res.json();
-//   } catch (err) {
-//     console.log(err)
-//   }
-// };
-
-async function update(formData) {
-  sendRequest(BASE_URL, 'PUT', formData);
+export async function update(formData) {
+  return sendRequest(BASE_URL, 'PUT', formData);
 }
 
-const deleteTeam = async (teamId) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${teamId}`, { method: 'DELETE' });
-    return res.json();
-  } catch (err) {
-    console.log(err)
-  }
-};
+export async function deleteTeam() {
 
-export {
-  index,
-  show,
-  create,
-  update,
-  deleteTeam as delete
-};
+}
+

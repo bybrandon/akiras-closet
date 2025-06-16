@@ -6,10 +6,12 @@ const teamsController = require('../controllers/teams');
 
 router.use(ensureLoggedIn);
 
+// all paths start with /api/teams
+
 router.get('/', teamsController.index);         
 router.post('/', teamsController.create);       
-router.get('/:id', teamsController.show);        
-router.put('/:id', teamsController.update);      
-router.delete('/:id', teamsController.deleteTeam);   
+router.get('/:teamId', teamsController.show);        
+router.put('/:teamId', teamsController.update);      
+router.delete('/:teamId', teamsController.deleteTeam);   
 
 module.exports = router;

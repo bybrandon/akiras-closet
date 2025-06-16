@@ -16,7 +16,7 @@ module.exports = {
 // GET /api/teams (INDEX action)
 async function index(req, res) {
   try {
-    const teams = await Team.find({author: req.user._id});
+    const teams = await Team.find({}).populate('author');
     res.status(200).json(teams);
   } catch (err) {
     res.status(500).json({ err: err.message })
