@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import * as teamService from '../../services/teamService';
 import * as heroService from '../../services/heroService';
 
@@ -7,6 +7,7 @@ export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
     const [availableHeroes, setAvailableHeroes] = useState([]);
     const { teamId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchTeamAndHeroes() {
@@ -19,7 +20,11 @@ export default function TeamDetailPage({ user }) {
     }, []);
 
     if (!team) return null;
-
+    
+    async function handleDeleteTeam() {
+        await teamService.deleteTeam(team._id);
+        navigate('/teams');
+    }
     async function handleRemoveHero(heroId) {
         const updatedTeam = await teamService.removeHero(team._id, heroId);
         setTeam(updatedTeam);
@@ -32,6 +37,7 @@ export default function TeamDetailPage({ user }) {
     return (
         <>
             <h1>{team.name}</h1>
+            { user._id === team.author && <button onClick={handleDeleteTeam}>💥</button>}
             <section className="team-hereos">
                 {team.heroes.length ?
                     <ul>
@@ -47,6 +53,7 @@ export default function TeamDetailPage({ user }) {
                 }
             </section>
             <section className="team-hereos">
+                <h2> Recruit Hero</h2>
                 {availableHeroes.length ?
                     <ul>
                         {availableHeroes.map((availableHero) => (

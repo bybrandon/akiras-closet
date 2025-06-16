@@ -11,6 +11,7 @@ module.exports = {
   create,
   removeHero,
   addHero,
+  deleteTeam,
   update
 }
 
@@ -45,6 +46,16 @@ async function create(req, res) {
     req.body.author = req.user._id;
     const createdTeam = await Team.create(req.body);
     res.status(201).json(createdTeam);
+  } catch (err) {
+    res.status(400).json({ err: err.message });
+  }
+}
+
+// DELETE /api/teams/:teamId (DELETE a team)
+async function deleteTeam(req, res) {
+  try {
+    const team = await Team.findOneAndDelete({_id: req.params.teamId, author: req.user._id});
+    res.json(team);
   } catch (err) {
     res.status(400).json({ err: err.message });
   }
