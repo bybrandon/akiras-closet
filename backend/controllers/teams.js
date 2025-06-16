@@ -26,7 +26,7 @@ async function index(req, res) {
 // GET /api/teams/:teamId (SHOW action)
 async function show(req, res) {
   try {
-    const team = await Team.findById(req.params.teamId);
+    const team = await Team.findById(req.params.teamId).populate('heroes');
     if (!team) {
       res.status(404);
       throw new Error('Squad Not Availible');
