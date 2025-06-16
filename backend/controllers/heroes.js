@@ -1,14 +1,14 @@
 const Hero = require('../models/hero');
+const Team = require('../models/team');
 
 module.exports = {
-  index
+  index,
+  avaiableForTeam,
 };
 
 async function index(req, res) {
   try {
     const heroes = await Hero.find({});
-    // Below would return all posts for just the logged in user
-    // const posts = await Post.find({author: req.user._id});
     res.json(heroes);
   } catch (err) {
     console.log(err);
@@ -16,3 +16,13 @@ async function index(req, res) {
   }
 }
 
+async function avaiableForTeam(req, res) {
+  try {
+    const team = await Team.findById(req.params.teamId);
+    const heroes = await Hero.find({_id: {$nin: team.heroes}});
+    res.json(heroes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Failed to find hero' });
+  }
+}

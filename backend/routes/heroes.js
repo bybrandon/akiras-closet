@@ -10,10 +10,7 @@ router.use(ensureLoggedIn);
 
 // GET /api/heroes (INDEX action)
 router.get('/', heroesController.index); 
-
-
-// router.get('/', postsCtrl.index);
-// POST /api/posts (CREATE action)
-// router.post('/', postsCtrl.create);
+// GET /api/heroes/avaialble/:teamId
+router.get('/available/:teamId', heroesController.avaiableForTeam); 
 
 module.exports = router

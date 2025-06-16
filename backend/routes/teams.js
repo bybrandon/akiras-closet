@@ -12,6 +12,7 @@ router.get('/', teamsController.index);
 router.post('/', teamsController.create);       
 router.get('/:teamId', teamsController.show);        
 router.put('/:teamId', teamsController.update);      
-router.delete('/heroes/:heroId', teamsController.removeHero);   
+router.delete('/:teamId/heroes/:heroId', teamsController.removeHero);   
+router.post('/:teamId/heroes/:heroId', teamsController.addHero);   
 
 module.exports = router;

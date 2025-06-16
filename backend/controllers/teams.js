@@ -10,8 +10,9 @@ module.exports = {
   show,
   create,
   removeHero,
+  addHero,
   update
-};
+}
 
 // GET /api/teams (INDEX action)
 async function index(req, res) {
@@ -21,7 +22,7 @@ async function index(req, res) {
   } catch (err) {
     res.status(500).json({ err: err.message })
   }
-};
+}
 
 // GET /api/teams/:teamId (SHOW action)
 async function show(req, res) {
@@ -36,7 +37,7 @@ async function show(req, res) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
   }
-};
+}
 
 // POST /api/teams (CREATE action)
 async function create(req, res) {
@@ -47,12 +48,12 @@ async function create(req, res) {
   } catch (err) {
     res.status(400).json({ err: err.message });
   }
-};
+}
 
 // DELETE /api/teams/heroes/:heroId (remove hero from team)
  async function removeHero(req, res) {
   try {
-    const team = await Team.findOne({heroes: req.params.heroId});
+    const team = await Team.findById(req.params.teamId);
     if (!team) {
       res.status(404);
       throw new Error('Squad Not Found');
@@ -65,7 +66,25 @@ async function create(req, res) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
   }
-};
+}
+
+// POST /api/teams/heroes/:heroId (add hero to team)
+ async function addHero(req, res) {
+  try {
+    const team = await Team.findById(req.params.teamId);
+    if (!team) {
+      res.status(404);
+      throw new Error('Squad Not Found');
+    }
+    team.heroes.push(req.params.heroId);
+    await team.save();
+    await team.populate('heroes');
+    res.status(200).json(team);
+  } catch (err) {
+    if (res.statusCode !== 404) res.status(500);
+    res.json({ err: err.message });
+  }
+}
 
 // PUT /api/teams/:teamId (UPDATE action)
  async function update(req, res) {
@@ -84,4 +103,4 @@ async function create(req, res) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
   }
-};
+}

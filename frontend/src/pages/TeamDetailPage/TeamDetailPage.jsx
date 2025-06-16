@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import * as teamService from '../../services/teamService';
+import * as heroService from '../../services/heroService';
 
 export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
+    const [availableHeroes, setAvailableHeroes] = useState([]);
     const { teamId } = useParams();
 
     useEffect(() => {
-        async function fetchTeam() {
+        async function fetchTeamAndHeroes() {
             const team = await teamService.show(teamId);
+            const heroes = await heroService.getAvailableForTeam(teamId);
             setTeam(team);
+            setAvailableHeroes(heroes);
         }
-        fetchTeam();
+        fetchTeamAndHeroes();
     }, []);
 
     if (!team) return null;
 
     async function handleRemoveHero(heroId) {
-        const updatedTeam = await teamService.removeHero(heroId);
+        const updatedTeam = await teamService.removeHero(team._id, heroId);
+        setTeam(updatedTeam);
+    }
+    async function handleAddHero(heroId) {
+        const updatedTeam = await teamService.addHero(team._id, heroId);
         setTeam(updatedTeam);
     }
 
@@ -36,6 +44,20 @@ export default function TeamDetailPage({ user }) {
                     </ul>
                     :
                     <p>No Heroes Assigned</p>
+                }
+            </section>
+            <section className="team-hereos">
+                {availableHeroes.length ?
+                    <ul>
+                        {availableHeroes.map((availableHero) => (
+                            <li key={availableHero._id}>
+                                {availableHero.name}
+                                { user._id === team.author && <button onClick={() => handleAddHero(availableHero._id)}>➕</button>}
+                            </li>
+                        ))}
+                    </ul>
+                    :
+                    <p>No Heroes Available</p>
                 }
             </section>
         </>
