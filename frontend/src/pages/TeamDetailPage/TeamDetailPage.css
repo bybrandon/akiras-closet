@@ -16,7 +16,7 @@ h1 {
     display: inline-block;
     padding-bottom: 0.25rem;
     background: linear-gradient(to right,
-            rgba(0, 0, 0, 0.123), red, purple);
+            rgba(0, 0, 0, 0.123),rgb(14, 197, 90), black);
     background-size: 200%;
     background-clip: text;
     -webkit-background-clip: text;
