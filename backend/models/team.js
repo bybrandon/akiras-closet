@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const textSchema = new Schema({
+const commentSchema = new Schema({
   comment: {
     type: String,
   },
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
 });
 
@@ -33,7 +34,7 @@ const teamSchema = new Schema(
         ref: 'User'
       }
     ],
-    comments: [textSchema]
+    comments: [commentSchema]
 
   }, {
   timestamps: true,

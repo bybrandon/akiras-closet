@@ -1,0 +1,48 @@
+.title {
+    color: rgb(0, 0, 0);
+}
+
+.header-1 {
+ background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.123),rgb(14, 197, 90), black);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 2.5s linear infinite;
+}
+
+.assemble-button {
+     --radius: 2rem;
+  padding-inline: 2.3rem;
+  padding-block: 1.2rem;
+  border-radius: var(--radius);
+  border: none;
+  background-color: #ffffff;
+  color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  display: grid;
+  place-items: center;
+  transition: background-color .2s ease;
+}
+.assemble-button:before, .assemble-button:after {
+  border-radius: calc(var(--radius) + .2rem);
+  position: absolute;
+  content: "";
+  width: calc(100% + .4rem);
+  height: calc(100% + .4rem);
+  background: linear-gradient(45deg, blue, purple);
+  z-index: -1;
+}
+.assemble-button:after {
+  z-index: -2;
+  transition: filter .2s ease;
+}
+.assemble-button:hover {
+   background: linear-gradient(45deg, rgb(7, 180, 94), rgb(2, 2, 2));
+  &::after {
+    filter: blur(2rem);
+  }
+}

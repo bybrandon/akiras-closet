@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import * as teamService from '../../services/teamService';
 import * as heroService from '../../services/heroService';
+import './TeamDetailPage.css'
 
 export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
@@ -41,16 +42,16 @@ export default function TeamDetailPage({ user }) {
     }
 
     return (
-        <>
+        <div className="team-heroes-container">
+            <section className="team-heroes">
             <h1>{team.name}</h1>
-            { user._id === team.author && <button onClick={handleDeleteTeam}>💥</button>}
-            <section className="team-hereos">
+            { user._id === team.author && <button onClick={handleDeleteTeam}>Disassemble</button>}
                 {team.heroes.length ?
                     <ul>
                         {team.heroes.map((hero) => (
                             <li key={hero._id}>
                                 {hero.name}
-                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>🗑️</button>}
+                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>-</button>}
                             </li>
                         ))}
                     </ul>
@@ -58,14 +59,14 @@ export default function TeamDetailPage({ user }) {
                     <p>No Heroes Assigned</p>
                 }
             </section>
-            <section className="team-hereos">
+            <section className="team-heroes">
                 <h2> Recruit Hero</h2>
                 {availableHeroes.length ?
                     <ul>
                         {availableHeroes.map((availableHero) => (
                             <li key={availableHero._id}>
                                 {availableHero.name}
-                                { user._id === team.author && <button onClick={() => handleAddHero(availableHero._id)}>➕</button>}
+                                { user._id === team.author && <button onClick={() => handleAddHero(availableHero._id)}>+</button>}
                             </li>
                         ))}
                     </ul>
@@ -73,7 +74,7 @@ export default function TeamDetailPage({ user }) {
                     <p>No Heroes Available</p>
                 }
             </section>
-        </>
+        </div>
     );
 }
 

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as teamService from '../../services/teamService';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import './NewTeamPage.css'
 
 export default function NewTeamPage({ heroes }) {
 
@@ -16,10 +19,7 @@ export default function NewTeamPage({ heroes }) {
     const { name, value } = evt.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: name === 'heroes' ? 
-          Array.from(evt.target.selectedOptions).map(option => option.value)
-          :
-          value
+          [name]: value
     }));
   }
 
@@ -51,15 +51,18 @@ export default function NewTeamPage({ heroes }) {
           />
         </div>
         <label htmlFor="heroes">Add Your Heroes:</label>
-        <select id="heroes" name="heroes" multiple
-          onChange={handleChange}
+        <Select id="heroes" name="heroes" value={formData.heroes} multiple
+          onChange={handleChange}          
         >
           {heroes.map(hero => (
-            <option key={hero._id} value={hero._id}>
-              {hero.name},{hero.description} {hero.cost}
-            </option>
+            <MenuItem 
+            key={hero._id} 
+            value={hero._id}>
+             {hero.name},
+             {hero.cost}
+            </MenuItem>
           ))}
-        </select>
+        </Select>
         <button
           type="submit"
           className="assemble-button"

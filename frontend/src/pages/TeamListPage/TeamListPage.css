@@ -1,0 +1,9 @@
+.squads ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.squads {
+    width: 80%;
+}
