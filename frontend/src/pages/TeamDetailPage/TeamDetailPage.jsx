@@ -27,6 +27,12 @@ export default function TeamDetailPage({ user }) {
     }, [team]);
 
     if (!team) return null;
+
+    const totalHeroCost = team.heroes.reduce((total, hero) => total + hero.cost, 0);
+    console.log(totalHeroCost)
+    const costAvailable = 1000 - totalHeroCost;
+
+
     
     async function handleDeleteTeam() {
         await teamService.deleteTeam(team._id);
@@ -51,7 +57,7 @@ export default function TeamDetailPage({ user }) {
                         {team.heroes.map((hero) => (
                             <li key={hero._id}>
                                 {hero.name}
-                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>-</button>}
+                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>release</button>}
                             </li>
                         ))}
                     </ul>
@@ -59,17 +65,21 @@ export default function TeamDetailPage({ user }) {
                     <p>No Heroes Assigned</p>
                 }
             </section>
-            <section className="team-heroes">
+            <section className="recruitment">
                 <h2> Recruit Hero</h2>
                 {availableHeroes.length ?
                     <ul>
                         {availableHeroes.map((availableHero) => (
                             <li key={availableHero._id}>
-                                {availableHero.name}
-                                { user._id === team.author && <button onClick={() => handleAddHero(availableHero._id)}>+</button>}
+                                {availableHero.name}, 
+                                {availableHero.description}
+                                {availableHero.ability}
+                                { user._id === team.author && costAvailable >= availableHero.cost && <button onClick={() => handleAddHero(availableHero._id)}>recruit</button>}
+                                { user._id === team.author && costAvailable < availableHero.cost && <p>Not Enough Points</p>}
                             </li>
                         ))}
                     </ul>
+                    
                     :
                     <p>No Heroes Available</p>
                 }

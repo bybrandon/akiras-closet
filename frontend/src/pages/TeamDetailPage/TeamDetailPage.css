@@ -16,7 +16,7 @@ h1 {
     display: inline-block;
     padding-bottom: 0.25rem;
     background: linear-gradient(to right,
-            rgba(0, 0, 0, 0.123),rgb(14, 197, 90), black);
+            rgba(0, 0, 0, 0.123), rgb(14, 197, 90), black);
     background-size: 200%;
     background-clip: text;
     -webkit-background-clip: text;
@@ -33,7 +33,7 @@ h1 {
 h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #ca31bd;
+    color: #ff0000;
     margin-bottom: 1rem;
     border-bottom: 2px solid #007bff;
     display: inline-block;
@@ -43,25 +43,35 @@ h2 {
 ul {
     list-style: none;
     text-decoration: none;
-    
-a {
- text-decoration: none;
-}    
+
+    a {
+        text-decoration: none;
+    }
 }
 
 .team-heroes {
     width: 30%;
 }
 
+#recruitment ul {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+}
+
 li {
     content: '';
-    
-    background-color: #f9f9f9;
-    /* background-image: url(https://platform.polygon.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23448328/RCO017_1651692140.jpg?quality=90&strip=all&crop=16.675050301811,0,66.649899396378,100);
-    background-repeat: no-repeat;
-    background-position: 100%; */
+
+    background-color: #ffffff;
     padding: 1.5rem;
     margin-top: 2rem;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: transparent;
+    border-color: transparent;
+    float: inline-end;
 }

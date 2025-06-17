@@ -42,7 +42,7 @@
   transition: filter .2s ease;
 }
 .assemble-button:hover {
-   background: linear-gradient(45deg, rgb(7, 180, 94), rgb(2, 2, 2));
+   background: linear-gradient(45deg,#2a9d8f , rgb(2, 2, 2) );
   &::after {
     filter: blur(2rem);
   }
