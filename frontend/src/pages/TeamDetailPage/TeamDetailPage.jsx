@@ -85,7 +85,8 @@ export default function TeamDetailPage({ user }) {
                             <li key={availableHero._id}>
                                 <strong>{availableHero.name}</strong>,
                                 {availableHero.description}
-                                {availableHero.ability}
+                                {availableHero.ability} -
+                                {availableHero.cost}
                                 {user._id === team.author && costAvailable >= availableHero.cost && <button onClick={() => handleAddHero(availableHero._id)}>recruit</button>}
                                 {user._id === team.author && costAvailable < availableHero.cost && <p>Not Enough Points</p>}
                             </li>

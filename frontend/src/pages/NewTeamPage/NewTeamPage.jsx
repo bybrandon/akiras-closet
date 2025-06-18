@@ -16,7 +16,7 @@ export default function NewTeamPage({ heroes }) {
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
-  const totalHeroCost = heroes.reduce((total, hero) => total + hero.cost, 0);
+  const totalHeroCost = formData.heroes.reduce((total, hero) => total + hero.cost, 0);
   const costAvailable = 1000 - totalHeroCost;
   console.log(costAvailable);
 
@@ -58,11 +58,15 @@ export default function NewTeamPage({ heroes }) {
         <label htmlFor="heroes">Add Your Heroes:</label>
         <Select id="heroes" name="heroes" value={formData.heroes} multiple
           onChange={handleChange}
-        >
+          >
+          <p>{costAvailable}</p>
           {heroes.map(hero => (
             <MenuItem
               key={hero._id}
-              value={hero}>
+              value={hero}
+               disabled={!formData.heroes.some((h) => h._id === hero._id) && hero.cost > costAvailable} 
+               
+              >
               {hero.name},
               {hero.cost}
             </MenuItem>

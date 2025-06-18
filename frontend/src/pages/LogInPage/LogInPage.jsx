@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as authService from '../../services/authService';
+import './LogInPage.css'
 
 export default function LogInPage({ setUser }) {
   const [formData, setFormData] = useState({

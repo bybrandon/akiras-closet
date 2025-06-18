@@ -10,6 +10,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: animate-gradient 2.5s linear infinite;
+    border-bottom: none;
+    
 }
 
 .assemble-button {
@@ -46,4 +48,8 @@
   &::after {
     filter: blur(2rem);
   }
+}
+
+p {
+  font-style: inherit;
 }
