@@ -24,7 +24,6 @@ This is about changing fate itself.
 - React
 - mdn web docs_
 - Github
-- stackoverflow
 - Coolors (https://coolors.co/palettes/trending)
 - Mui (https://mui.com/)
 

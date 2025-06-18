@@ -6,7 +6,7 @@ import './TeamDetailPage.css'
 
 export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
-    const [formData, setFormData] = useState({ author: user._id, comment: '' });
+    const [formData, setFormData] = useState({ comment: '' });
     const [availableHeroes, setAvailableHeroes] = useState([]);
     const { teamId } = useParams();
     const navigate = useNavigate();
@@ -33,6 +33,13 @@ export default function TeamDetailPage({ user }) {
     const costAvailable = 1000 - totalHeroCost;
 
 
+    function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  }
 
     async function handleDeleteTeam() {
         await teamService.deleteTeam(team._id);
@@ -48,7 +55,8 @@ export default function TeamDetailPage({ user }) {
     }
 
     async function handleAddComment() {
-        const comment = await teamService.addComment(team._id, formData)
+        const updatedTeam = await teamService.addComment(team._id, formData);
+        setTeam(updatedTeam);
     }
 
     return (
@@ -75,7 +83,7 @@ export default function TeamDetailPage({ user }) {
                     <ul>
                         {availableHeroes.map((availableHero) => (
                             <li key={availableHero._id}>
-                                {availableHero.name},
+                                <strong>{availableHero.name}</strong>,
                                 {availableHero.description}
                                 {availableHero.ability}
                                 {user._id === team.author && costAvailable >= availableHero.cost && <button onClick={() => handleAddHero(availableHero._id)}>recruit</button>}
@@ -87,6 +95,22 @@ export default function TeamDetailPage({ user }) {
                     :
                     <p>No Heroes Available</p>
                 }
+            </section>
+            <section className="comment-section">
+                <form onSubmit={handleAddComment}>
+                    <div>
+                        <label className="title">Comment Section</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="required"
+                        />
+                    </div>
+                    </form>
+                     <button type="submit">Post</button>
             </section>
         </div>
     );
