@@ -11,6 +11,7 @@ module.exports = {
   create,
   removeHero,
   addHero,
+  addComment,
   deleteTeam,
   update
 }
@@ -54,7 +55,7 @@ async function create(req, res) {
 // DELETE /api/teams/:teamId (DELETE a team)
 async function deleteTeam(req, res) {
   try {
-    const team = await Team.findOneAndDelete({_id: req.params.teamId, author: req.user._id});
+    const team = await Team.findOneAndDelete({ _id: req.params.teamId, author: req.user._id });
     res.json(team);
   } catch (err) {
     res.status(400).json({ err: err.message });
@@ -62,7 +63,7 @@ async function deleteTeam(req, res) {
 }
 
 // DELETE /api/teams/heroes/:heroId (remove hero from team)
- async function removeHero(req, res) {
+async function removeHero(req, res) {
   try {
     const team = await Team.findById(req.params.teamId);
     if (!team) {
@@ -80,7 +81,7 @@ async function deleteTeam(req, res) {
 }
 
 // POST /api/teams/heroes/:heroId (add hero to team)
- async function addHero(req, res) {
+async function addHero(req, res) {
   try {
     const team = await Team.findById(req.params.teamId);
     if (!team) {
@@ -98,7 +99,7 @@ async function deleteTeam(req, res) {
 }
 
 // PUT /api/teams/:teamId (UPDATE action)
- async function update(req, res) {
+async function update(req, res) {
   try {
     const updatedTeam = await Team.findByIdAndUpdate(
       req.params.teamId,
@@ -111,6 +112,18 @@ async function deleteTeam(req, res) {
     }
     res.json(updatedTeam);
   } catch (err) {
+    if (res.statusCode !== 404) res.status(500);
+    res.json({ err: err.message });
+  }
+}
+
+// POST /api/teams/:teamId/comments
+async function addComment(req, res) {
+  try {
+    req.body.author = req.user._id;
+    const comment = await Comment.create(req.body);
+    res.json(comment);
+  } catch {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
   }

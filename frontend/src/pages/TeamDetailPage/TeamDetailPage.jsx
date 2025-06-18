@@ -6,6 +6,7 @@ import './TeamDetailPage.css'
 
 export default function TeamDetailPage({ user }) {
     const [team, setTeam] = useState(null);
+    const [formData, setFormData] = useState({ author: user._id, comment: '' });
     const [availableHeroes, setAvailableHeroes] = useState([]);
     const { teamId } = useParams();
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function TeamDetailPage({ user }) {
         }
         fetchTeams();
     }, []);
-    
+
     useEffect(() => {
         async function fetchHeroes() {
             const heroes = await heroService.getAvailableForTeam(teamId);
@@ -29,11 +30,10 @@ export default function TeamDetailPage({ user }) {
     if (!team) return null;
 
     const totalHeroCost = team.heroes.reduce((total, hero) => total + hero.cost, 0);
-    console.log(totalHeroCost)
     const costAvailable = 1000 - totalHeroCost;
 
 
-    
+
     async function handleDeleteTeam() {
         await teamService.deleteTeam(team._id);
         navigate('/teams');
@@ -47,17 +47,21 @@ export default function TeamDetailPage({ user }) {
         setTeam(updatedTeam);
     }
 
+    async function handleAddComment() {
+        const comment = await teamService.addComment(team._id, formData)
+    }
+
     return (
         <div className="team-heroes-container">
             <section className="team-heroes">
-            <h1>{team.name}</h1>
-            { user._id === team.author && <button onClick={handleDeleteTeam}>Disassemble</button>}
+                <h1>{team.name}</h1>
+                {user._id === team.author && <button onClick={handleDeleteTeam}>Disassemble</button>}
                 {team.heroes.length ?
                     <ul>
                         {team.heroes.map((hero) => (
                             <li key={hero._id}>
                                 {hero.name}
-                                { user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>release</button>}
+                                {user._id === team.author && <button onClick={() => handleRemoveHero(hero._id)}>release</button>}
                             </li>
                         ))}
                     </ul>
@@ -71,15 +75,15 @@ export default function TeamDetailPage({ user }) {
                     <ul>
                         {availableHeroes.map((availableHero) => (
                             <li key={availableHero._id}>
-                                {availableHero.name}, 
+                                {availableHero.name},
                                 {availableHero.description}
                                 {availableHero.ability}
-                                { user._id === team.author && costAvailable >= availableHero.cost && <button onClick={() => handleAddHero(availableHero._id)}>recruit</button>}
-                                { user._id === team.author && costAvailable < availableHero.cost && <p>Not Enough Points</p>}
+                                {user._id === team.author && costAvailable >= availableHero.cost && <button onClick={() => handleAddHero(availableHero._id)}>recruit</button>}
+                                {user._id === team.author && costAvailable < availableHero.cost && <p>Not Enough Points</p>}
                             </li>
                         ))}
                     </ul>
-                    
+
                     :
                     <p>No Heroes Available</p>
                 }

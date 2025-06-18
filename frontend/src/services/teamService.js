@@ -28,3 +28,7 @@ export async function removeHero(teamId, heroId) {
 export async function addHero(teamId, heroId) {
   return sendRequest(`${BASE_URL}/${teamId}/heroes/${heroId}`, 'POST');
 }
+
+export async function addComment(teamId, formData) {
+  return sendRequest(`${BASE_URL}/${teamId}/comments`, 'POST', formData);
+}
