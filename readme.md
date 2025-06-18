@@ -32,7 +32,7 @@ This is about changing fate itself.
 )](https://taskmaster-tc-37434c58eeff.herokuapp.com/)
 
 ### Homepage
-<img src="https://imgur.com/51jHHAI.png" alt="Screenshot">
+<img src="https://imgur.com/a/omoCasU" alt="Screenshot">
 
 #### Later Site Additions may include:
 
