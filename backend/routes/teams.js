@@ -15,6 +15,6 @@ router.delete('/:teamId', teamsController.deleteTeam);
 router.put('/:teamId', teamsController.update);      
 router.delete('/:teamId/heroes/:heroId', teamsController.removeHero);   
 router.post('/:teamId/heroes/:heroId', teamsController.addHero);   
-router.post('/:teamId', teamsController.addComment);   
+router.post('/:teamId/comments', teamsController.addComment);   
 
 module.exports = router;

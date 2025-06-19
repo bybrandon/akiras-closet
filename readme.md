@@ -26,6 +26,7 @@ This is about changing fate itself.
 - Github
 - Coolors (https://coolors.co/palettes/trending)
 - Mui (https://mui.com/)
+- Heroku 
 
 
 [![Gather Your Forces](images/disc.png
@@ -36,5 +37,5 @@ This is about changing fate itself.
 
 #### Later Site Additions may include:
 
-- 
-- 
+- Upgraded Accesibilty for mobile user's
+- Graphic Detailing

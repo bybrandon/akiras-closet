@@ -119,11 +119,15 @@ async function update(req, res) {
 
 // POST /api/teams/:teamId/comments
 async function addComment(req, res) {
+  console.log(req.user._id, req.body.author);
   try {
     req.body.author = req.user._id;
-    const comment = await Comment.create(req.body);
-    res.json(comment);
-  } catch {
+    const team = await Team.findByIdAndUpdate(
+      req.params.teamId,
+      { $push: { comments: req.body } }
+    );
+    res.json(team);
+  } catch (err) {
     if (res.statusCode !== 404) res.status(500);
     res.json({ err: err.message });
   }

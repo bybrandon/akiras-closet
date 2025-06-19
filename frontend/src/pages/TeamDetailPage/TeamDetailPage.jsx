@@ -34,12 +34,12 @@ export default function TeamDetailPage({ user }) {
 
 
     function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  }
+        const { name, value } = evt.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    }
 
     async function handleDeleteTeam() {
         await teamService.deleteTeam(team._id);
@@ -76,6 +76,37 @@ export default function TeamDetailPage({ user }) {
                     :
                     <p>No Heroes Assigned</p>
                 }
+                <section className="comment-section">
+                    <form onSubmit={handleAddComment}>
+                        <div>
+                            <label className="title">Comment Section</label>
+                            <input
+                                type="text"
+                                name="comment"
+                                value={formData.comment}
+                                onChange={handleChange}
+                                required
+                                className="required"
+                            />
+                        </div>
+                        <button type="submit">Post</button>
+                    </form>
+                    <section className="comment-display">
+
+                        <>
+                            <h3>BLIP BLOG</h3>
+                            {team.comments.length ?
+                                <ul>
+                                    {team.comments.map((comment) => <li key={comment._id}>{comment.comment}</li>)}
+                                </ul>
+                                :
+                                <p>No Comments Yet!</p>
+                            }
+                        </>
+
+                    </section>
+
+                </section>
             </section>
             <section className="recruitment">
                 <h2> Recruit Hero</h2>
@@ -96,23 +127,10 @@ export default function TeamDetailPage({ user }) {
                     :
                     <p>No Heroes Available</p>
                 }
+
             </section>
-            <section className="comment-section">
-                <form onSubmit={handleAddComment}>
-                    <div>
-                        <label className="title">Comment Section</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            className="required"
-                        />
-                    </div>
-                    </form>
-                     <button type="submit">Post</button>
-            </section>
+
+
         </div>
     );
 }
