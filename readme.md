@@ -15,27 +15,37 @@ Because this isn’t just about saving the world...
 This is about changing fate itself.
 
 ## 🎖️ Game Features
-
+- Hero Roster – Choose from a growing list of Marvel characters
+- Strategic Team Building
+- User >-< Team Interaction
 
 ## Implemented Technologies
 
+ ### Deployment
+- Heroku 
+- Github
+
+ ### Coding 
 - JavaScript
 - Css (Cascading Style Sheet)
 - React
-- mdn web docs_
-- Github
-- Coolors (https://coolors.co/palettes/trending)
+- mdn web docs_ (https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables)
 - Mui (https://mui.com/)
-- Heroku 
 
+ ### Styling
+- Coolors (https://coolors.co/palettes/trending)
+- Robb Owen (https://robbowen.digital/wrote-about/css-blend-mode-shaders/)
+- WallPaperCave - (https://wallpapercave.com/)
 
 [![Gather Your Forces](images/disc.png
 )](https://mern-akira-3eb55ab14595.herokuapp.com//)
 
+
 ### Homepage
-<img src="https://imgur.com/a/omoCasU" alt="Screenshot">
+<img src="https://imgur.com/AB6imvq" alt="Screenshot">
 
 #### Later Site Additions may include:
 
-- Upgraded Accesibilty for mobile user's
+- Upgraded Accesibilty for mobile users
 - Graphic Detailing
+- Increased Catalogue Of Heroes

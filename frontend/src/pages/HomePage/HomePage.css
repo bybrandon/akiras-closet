@@ -18,3 +18,54 @@
   border-left: 4px solid #ff5252;
   border-radius: 8px;
 }
+
+.Homepage.holo-panel {
+  background: radial-gradient(ellipse at center, #001e2b 0%, #000000 100%);
+  border: 2px solid #00ff15;
+  color: #00ff15;
+  font-family: 'Orbitron', sans-serif;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00ff15;
+  max-width: 900px;
+  margin: 4rem auto;
+  text-shadow: 0 0 6px #00ff15;
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #00ff15;
+  border-bottom: 2px solid #00ff15;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.holo-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.holo-divider {
+  border: none;
+  border-top: 1px solid #00ff15;
+  margin: 2rem 0;
+}
+
+.highlight {
+  color: #ffea00;
+  font-weight: bold;
+}
+
+.holo-footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0.8;
+  color: #aaa;
+  font-style: italic;
+}
