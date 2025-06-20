@@ -20,10 +20,11 @@ export default function TeamListPage() {
       {teams.length ?
         <div className='squads'>
           <ul>
-            {teams.map((team) => 
-              <Link to={`/teams/${team._id}`}><li>
-                {team.name} ({team.author.name})
-                </li></Link>
+            {teams.map((team) =>
+              <Link to={`/teams/${team._id}`}>
+                <span className="squad-name">{team.name}</span> commanded by
+                <span className="squad-author">{team.author.name}</span>
+              </Link>
             )}
           </ul>
         </div>

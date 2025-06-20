@@ -30,7 +30,7 @@ This is about changing fate itself.
 
 
 [![Gather Your Forces](images/disc.png
-)](https://taskmaster-tc-37434c58eeff.herokuapp.com/)
+)](https://mern-akira-3eb55ab14595.herokuapp.com//)
 
 ### Homepage
 <img src="https://imgur.com/a/omoCasU" alt="Screenshot">

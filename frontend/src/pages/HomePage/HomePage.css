@@ -1,3 +1,20 @@
-.HomePage {
-    background-image: url('https://statcdn.fandango.com/MPX/image/NBCU_Fandango/230/687/AvengersAgeofUltron_Trailer1.jpg');
+.Homepage h1 {
+  font-size: 3rem;
+  color: #ff5252;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  justify-content: center;
+}
+
+.Homepage h2 {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  font-weight: 400;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-left: 4px solid #ff5252;
+  border-radius: 8px;
 }

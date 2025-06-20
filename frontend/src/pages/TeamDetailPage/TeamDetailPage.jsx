@@ -79,7 +79,7 @@ export default function TeamDetailPage({ user }) {
                 <section className="comment-section">
                     <form onSubmit={handleAddComment}>
                         <div>
-                            <label className="title">Comment Section</label>
+                            <label className="title"><strong>Blip Blog</strong></label>
                             <input
                                 type="text"
                                 name="comment"
@@ -94,7 +94,7 @@ export default function TeamDetailPage({ user }) {
                     <section className="comment-display">
 
                         <>
-                            <h3>BLIP BLOG</h3>
+                            <h3>The Daily Bougle</h3>
                             {team.comments.length ?
                                 <ul>
                                     {team.comments.map((comment) => <li key={comment._id}>{comment.comment}</li>)}

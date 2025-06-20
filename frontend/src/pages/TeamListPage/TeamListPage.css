@@ -9,6 +9,22 @@
     width: 80%;
 }
 
+.squad-name {
+  display: block;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+}
+
+.squad-author {
+  font-size: 1.5rem;
+  color: #000000;
+  margin-top: 0.25rem;
+  display: block;
+  border-top: 1px solid brown;
+  padding-top: 0.5rem;
+}
+
 h1 {
   background: linear-gradient(to right,
             rgba(0, 0, 0, 0.123),rgb(14, 197, 90), black);
