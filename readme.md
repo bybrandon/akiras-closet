@@ -42,7 +42,7 @@ This is about changing fate itself.
 
 
 ### Homepage
-<img src="https://imgur.com/AB6imvq" alt="Screenshot">
+<img src="https://imgur.com/a/aYYIHFs" alt="Screenshot">
 
 #### Later Site Additions may include:
 
