@@ -92,7 +92,6 @@ export default function TeamDetailPage({ user }) {
                         <button type="submit">Post</button>
                     </form>
                     <section className="comment-display">
-
                         <>
                             <h3>The Daily Bougle</h3>
                             {team.comments.length ?
@@ -103,9 +102,7 @@ export default function TeamDetailPage({ user }) {
                                 <p>No Comments Yet!</p>
                             }
                         </>
-
                     </section>
-
                 </section>
             </section>
             <section className="recruitment">
@@ -123,15 +120,10 @@ export default function TeamDetailPage({ user }) {
                             </li>
                         ))}
                     </ul>
-
                     :
                     <p>No Heroes Available</p>
                 }
-
             </section>
-
-
         </div>
     );
 }
-
